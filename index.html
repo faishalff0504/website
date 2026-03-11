@@ -1,286 +1,655 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FaiApps</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FaiApps Official</title>
+  <meta name="description" content="Landing page FaiApps Official untuk mengarahkan pelanggan ke WhatsApp, tutorial, dan layanan utama." />
+  <style>
+    :root{
+      --bg:#fffafc;
+      --bg-soft:#fff3f7;
+      --card:#ffffff;
+      --text:#1b1b1f;
+      --muted:#7b4a61;
+      --line:#f1d3df;
+      --primary:#b01356;
+      --primary-dark:#980f4a;
+      --primary-soft:#f9dce8;
+      --dark:#1b1b1f;
+      --dark-soft:#2a2a31;
+      --white:#ffffff;
+      --shadow:0 18px 40px rgba(23,17,25,.08);
+      --radius:24px;
+    }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,Arial}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
 
-body{
-background:#fffafc;
-color:#1b1b1f;
-line-height:1.6;
-}
+    a{color:inherit}
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:80px 20px;
-}
+    .container{
+      max-width:1160px;
+      margin:auto;
+      padding:0 20px;
+    }
 
-.hero{
-background:linear-gradient(135deg,#fff1f6,#f8d7e4);
-padding:120px 20px;
-text-align:center;
-border-bottom:1px solid #f1d3df;
-}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(255,250,252,.78);
+      border-bottom:1px solid rgba(241,211,223,.9);
+    }
 
-.badge{
-display:inline-block;
-padding:6px 14px;
-border-radius:999px;
-background:white;
-border:1px solid #f0d4df;
-font-size:12px;
-margin-bottom:20px;
-}
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:74px;
+      gap:16px;
+    }
 
-.hero h1{
-font-size:52px;
-margin-bottom:15px;
-font-weight:700;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
 
-.hero p{
-max-width:650px;
-margin:auto;
-color:#7b4a61;
-font-size:18px;
-}
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--primary),#d64885);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(176,19,86,.26);
+      font-size:16px;
+      font-weight:800;
+    }
 
-.buttons{
-margin-top:30px;
-display:flex;
-justify-content:center;
-gap:14px;
-flex-wrap:wrap;
-}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
-.btn{
-padding:14px 26px;
-border-radius:14px;
-text-decoration:none;
-font-weight:600;
-font-size:14px;
-transition:0.2s;
-}
+    .nav-links a{
+      text-decoration:none;
+      color:#6d4860;
+      font-size:14px;
+      font-weight:600;
+      padding:10px 14px;
+      border-radius:999px;
+    }
 
-.btn-primary{
-background:#b01356;
-color:white;
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-}
+    .nav-links a:hover{background:#fff}
 
-.btn-primary:hover{
-background:#980f4a;
-}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 30%),
+        linear-gradient(135deg,#fff1f6,#f8d7e4);
+      border-bottom:1px solid var(--line);
+    }
 
-.btn-outline{
-border:2px solid #e79ab7;
-color:#b01356;
-background:white;
-}
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-80px;
+      top:-60px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(255,255,255,.35);
+      filter:blur(10px);
+    }
 
-.btn-outline:hover{
-background:#fff0f6;
-}
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:34px;
+      align-items:center;
+      padding:88px 0;
+    }
 
-.section-title{
-margin-bottom:30px;
-}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid #efd4de;
+      font-size:13px;
+      color:#7f4d65;
+      box-shadow:0 8px 25px rgba(0,0,0,.04);
+      margin-bottom:20px;
+    }
 
-.section-title h2{
-font-size:36px;
-margin-bottom:8px;
-}
+    .hero h1{
+      font-size:clamp(38px,6vw,64px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      margin-bottom:16px;
+    }
 
-.section-title p{
-color:#8b5a71;
-}
+    .hero p{
+      max-width:680px;
+      color:var(--muted);
+      font-size:18px;
+    }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:40px;
-}
+    .buttons{
+      margin-top:30px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
 
-.card{
-background:white;
-border:1px solid #f0d4df;
-padding:28px;
-border-radius:22px;
-transition:0.2s;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 24px;
+      border-radius:18px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      transition:.22s ease;
+      border:1px solid transparent;
+    }
 
-.card:hover{
-transform:translateY(-4px);
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
+    .btn:hover{transform:translateY(-2px)}
 
-.card h3{
-margin-bottom:10px;
-color:#b01356;
-font-size:20px;
-}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),#cb3f7d);
+      box-shadow:0 14px 28px rgba(176,19,86,.22);
+    }
 
-.steps{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:40px;
-}
+    .btn-primary:hover{background:linear-gradient(135deg,var(--primary-dark),#b92c6d)}
 
-.step{
-background:#fff7fa;
-border:1px solid #f0d4df;
-padding:28px;
-border-radius:22px;
-}
+    .btn-outline{
+      background:#fff;
+      color:var(--primary);
+      border-color:#ebbed0;
+      box-shadow:0 12px 24px rgba(0,0,0,.04);
+    }
 
-.step-number{
-width:40px;
-height:40px;
-border-radius:50%;
-background:#b01356;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:700;
-margin-bottom:12px;
-}
+    .btn-outline:hover{background:#fff4f8}
 
-.cta{
-background:#1b1b1f;
-color:white;
-padding:90px 20px;
-text-align:center;
-}
+    .hero-card{
+      background:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.8);
+      padding:20px;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+    }
 
-.cta h2{
-font-size:36px;
-margin-bottom:10px;
-}
+    .palette{
+      background:var(--dark);
+      border-radius:24px;
+      padding:28px;
+      color:#fff;
+    }
 
-.cta p{
-color:#f1c8d6;
-margin-bottom:25px;
-}
+    .eyebrow{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:#f4bfd1;
+      margin-bottom:14px;
+    }
 
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-border-top:1px solid #eee;
-font-size:14px;
-}
+    .palette h3{font-size:30px;line-height:1.2;margin-bottom:10px}
+    .palette p{color:#f5cad7}
 
-@media(max-width:700px){
-.hero h1{font-size:36px}
-.container{padding:60px 20px}
-}
+    .swatches{
+      margin:20px 0 16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
 
-</style>
+    .swatch{
+      border-radius:18px;
+      padding:18px 12px;
+      text-align:center;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .benefits{display:grid;gap:10px;margin-top:18px}
+    .benefit{
+      padding:13px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#f6d6e1;
+      font-size:14px;
+    }
+
+    .section{padding:86px 0}
+    .section-title{max-width:760px;margin-bottom:28px}
+    .section-title .mini{
+      color:#a14b6f;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:800;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .section-title h2{
+      font-size:clamp(30px,4vw,44px);
+      line-height:1.1;
+      margin-bottom:10px;
+      letter-spacing:-.03em;
+    }
+
+    .section-title p{color:#8b5a71}
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid #f0d4df;
+      padding:28px;
+      border-radius:24px;
+      box-shadow:0 10px 26px rgba(0,0,0,.03);
+      transition:.22s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 32px rgba(0,0,0,.06);
+      border-color:#dd9fba;
+    }
+
+    .icon-pill{
+      width:48px;
+      height:48px;
+      display:grid;
+      place-items:center;
+      border-radius:16px;
+      margin-bottom:16px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),#d34582);
+      font-weight:800;
+      box-shadow:0 10px 20px rgba(176,19,86,.18);
+    }
+
+    .card h3{font-size:22px;margin-bottom:8px;color:var(--text)}
+    .card p{color:#7d5a6b}
+
+    .steps .card{background:#fff7fa}
+    .step-number{
+      width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+      background:var(--primary);color:#fff;font-weight:800;margin-bottom:16px;
+      box-shadow:0 10px 20px rgba(176,19,86,.18);
+    }
+
+    .video-frame{
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid #f0d4df;
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .video-frame iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .quote{font-size:17px;color:#4e3441;margin-bottom:16px}
+    .person{display:flex;align-items:center;gap:12px;margin-top:18px}
+    .avatar{
+      width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+      background:var(--primary-soft);color:var(--primary);font-weight:800;
+    }
+    .person small{display:block;color:#9d7085}
+
+    .faq{display:grid;gap:14px}
+    details{
+      background:#fff;
+      border:1px solid #f0d4df;
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 8px 20px rgba(0,0,0,.03);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      list-style:none;
+      padding-right:22px;
+      position:relative;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:'+';
+      position:absolute;
+      right:0;
+      top:0;
+      color:var(--primary);
+      font-size:22px;
+      line-height:1;
+    }
+    details[open] summary::after{content:'–'}
+    details p{margin-top:10px;color:#7d5a6b}
+
+    .cta{
+      background:var(--dark);
+      color:#fff;
+      padding:90px 0;
+    }
+
+    .cta-box{
+      background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:32px;
+      padding:36px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:center;
+      box-shadow:0 22px 50px rgba(0,0,0,.18);
+    }
+
+    .cta h2{font-size:clamp(30px,4vw,42px);line-height:1.08;margin-bottom:10px}
+    .cta p{color:#f1c8d6;max-width:680px}
+    .cta-actions{display:grid;gap:12px}
+    .cta .btn-outline{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+    .cta .btn-outline:hover{background:rgba(255,255,255,.12)}
+
+    footer{
+      border-top:1px solid #f1d9e3;
+      background:#fff;
+    }
+
+    .footer-wrap{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      color:#7e6571;
+      font-size:14px;
+      flex-wrap:wrap;
+    }
+
+    .floating-wa{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:70;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#fff;
+      background:linear-gradient(135deg,#25D366,#1ea952);
+      box-shadow:0 16px 30px rgba(37,211,102,.26);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .floating-wa:hover{transform:translateY(-2px)}
+
+    @media (max-width: 980px){
+      .hero-inner,.cta-box,.grid-3,.testimonials{grid-template-columns:1fr}
+      .hero{padding-top:0}
+      .hero-inner{padding:58px 0}
+      .nav-links{display:none}
+    }
+
+    @media (max-width: 640px){
+      .container{padding:0 16px}
+      .section{padding:68px 0}
+      .hero h1{font-size:40px}
+      .hero p{font-size:16px}
+      .buttons{flex-direction:column}
+      .btn{width:100%}
+      .swatches{grid-template-columns:1fr}
+      .cta-box{padding:24px}
+      .floating-wa{left:16px;right:16px;justify-content:center}
+    }
+  </style>
 </head>
-
 <body>
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">
+        <div class="brand-mark">FA</div>
+        <div>
+          <div>FaiApps Official</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="https://wa.me/6289687023528" target="_blank" rel="noopener">Chat Admin</a>
+      </div>
+    </div>
+  </nav>
 
-<section class="hero">
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div>
+        <div class="badge">Website sederhana • elegan • fokus konversi</div>
+        <h1>Solusi digital yang rapi, jelas, dan mudah diikuti pelanggan.</h1>
+        <p>
+          FaiApps Official membantu pelanggan memahami layanan, melihat tutorial, lalu langsung melanjutkan ke langkah berikutnya tanpa bingung. Cocok untuk bio Instagram, TikTok, WhatsApp, dan promosi harian.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="https://wa.me/6289687023528" target="_blank" rel="noopener">Chat Admin WhatsApp</a>
+          <a class="btn btn-outline" href="https://youtube.com/@faishalfajarfauzani5107?si=IzDjAp8mbOSRbdEr" target="_blank" rel="noopener">Lihat Tutorial</a>
+        </div>
+      </div>
 
-<div class="badge">Website sederhana • elegan • fokus pelanggan</div>
+      <div class="hero-card">
+        <div class="palette">
+          <div class="eyebrow">Identitas Brand</div>
+          <h3>Elegan dengan aksen rose, soft pink, dan dark premium.</h3>
+          <p>Tema dibuat mengikuti nuansa logo kamu agar terasa lebih branded dan profesional.</p>
+          <div class="swatches">
+            <div class="swatch" style="background:#b01356;color:#fff">ROSE BOLD</div>
+            <div class="swatch" style="background:#e79ab7;color:#1b1b1f">SOFT PINK</div>
+            <div class="swatch" style="background:#111111;color:#fff">DEEP BLACK</div>
+          </div>
+          <div class="benefits">
+            <div class="benefit">Tampilan profesional untuk bio Instagram dan promosi.</div>
+            <div class="benefit">Arah tindakan jelas: WhatsApp, tutorial, lalu closing.</div>
+            <div class="benefit">Mudah diupdate sendiri lewat GitHub Pages.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h1>FaiApps Official</h1>
+  <section class="section" id="layanan">
+    <div class="container">
+      <div class="section-title">
+        <div class="mini">Tentang layanan</div>
+        <h2>Jelaskan usaha kamu dengan singkat, rapi, dan meyakinkan.</h2>
+        <p>Bagian ini cocok untuk memperkenalkan layanan utama dan alasan pelanggan perlu memilih kamu.</p>
+      </div>
 
-<p>
-Kami membantu pelanggan mendapatkan hasil terbaik dengan proses yang sederhana, cepat, dan jelas.
-Landing page ini dirancang untuk menjelaskan usaha Anda sekaligus mengarahkan pelanggan ke langkah berikutnya.
-</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-pill">01</div>
+          <h3>Layanan Utama</h3>
+          <p>Isi dengan jasa atau produk utama yang paling sering dicari pelanggan. Gunakan kalimat singkat dan langsung ke manfaat.</p>
+        </div>
+        <div class="card">
+          <div class="icon-pill">02</div>
+          <h3>Proses Mudah</h3>
+          <p>Tunjukkan bahwa alurnya simpel: pelanggan tanya, admin bantu, lalu proses berjalan cepat tanpa ribet.</p>
+        </div>
+        <div class="card">
+          <div class="icon-pill">03</div>
+          <h3>Dukungan Cepat</h3>
+          <p>Tekankan bahwa admin responsif sehingga pelanggan merasa aman saat konsultasi atau memesan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="buttons">
-<a class="btn btn-primary" href="https://wa.me/6289687023528" target="_blank">Chat Admin WhatsApp</a>
-<a class="btn btn-outline" href="https://youtube.com/@faishalfajarfauzani5107?si=IzDjAp8mbOSRbdEr" target="_blank">Lihat Tutorial</a>
-</div>
+  <section class="section" style="background:#fff; border-top:1px solid #f3dde5; border-bottom:1px solid #f3dde5;">
+    <div class="container">
+      <div class="section-title">
+        <div class="mini">Alur pelanggan</div>
+        <h2>Arahkan pengunjung ke langkah berikutnya tanpa bikin bingung.</h2>
+        <p>Struktur ini membantu pengunjung dari bio IG langsung tahu harus klik apa.</p>
+      </div>
 
-</section>
+      <div class="grid-3 steps">
+        <div class="card">
+          <div class="step-number">1</div>
+          <h3>Pilih kebutuhan</h3>
+          <p>Pengunjung membaca layanan dan memahami solusi yang paling cocok untuk mereka.</p>
+        </div>
+        <div class="card">
+          <div class="step-number">2</div>
+          <h3>Hubungi admin</h3>
+          <p>Mereka klik WhatsApp untuk konsultasi, tanya harga, atau mulai order.</p>
+        </div>
+        <div class="card">
+          <div class="step-number">3</div>
+          <h3>Lihat tutorial</h3>
+          <p>Kalau masih ragu, mereka bisa buka YouTube untuk melihat panduan atau penjelasan lebih lengkap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="container">
+  <section class="section" id="tutorial">
+    <div class="container">
+      <div class="section-title">
+        <div class="mini">Video tutorial</div>
+        <h2>Beri pelanggan rasa yakin lewat video singkat.</h2>
+        <p>Kamu bisa ganti video ini dengan tutorial, demo produk, atau penjelasan layanan paling penting.</p>
+      </div>
 
-<div class="section-title">
-<h2>Layanan Kami</h2>
-<p>Jelaskan layanan bisnis Anda secara singkat dan meyakinkan.</p>
-</div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial FaiApps" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
-<div class="services">
+  <section class="section" style="background:var(--bg-soft)" id="testimoni">
+    <div class="container">
+      <div class="section-title">
+        <div class="mini">Testimoni</div>
+        <h2>Buat pengunjung lebih percaya sebelum mereka chat admin.</h2>
+        <p>Isi testimoni asli pelanggan nanti akan membuat landing page kamu jauh lebih kuat.</p>
+      </div>
 
-<div class="card">
-<h3>Layanan Utama</h3>
-<p>Deskripsikan layanan utama bisnis kamu di sini agar pelanggan langsung paham.</p>
-</div>
+      <div class="testimonials">
+        <div class="card">
+          <div class="quote">“Pelayanannya jelas, admin cepat respon, dan tutorialnya membantu banget. Jadi lebih yakin buat lanjut.”</div>
+          <div class="person">
+            <div class="avatar">A</div>
+            <div><strong>Pelanggan 1</strong><small>Placeholder testimoni</small></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="quote">“Web-nya enak dilihat dan langsung paham harus klik ke mana. Prosesnya juga simpel.”</div>
+          <div class="person">
+            <div class="avatar">B</div>
+            <div><strong>Pelanggan 2</strong><small>Placeholder testimoni</small></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="quote">“Dari bio IG langsung masuk ke website, lihat tutorial, lalu chat admin. Alurnya rapi banget.”</div>
+          <div class="person">
+            <div class="avatar">C</div>
+            <div><strong>Pelanggan 3</strong><small>Placeholder testimoni</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<h3>Proses Mudah</h3>
-<p>Pelanggan bisa memulai hanya dengan beberapa langkah sederhana.</p>
-</div>
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <div class="mini">FAQ</div>
+        <h2>Jawab pertanyaan umum sebelum pelanggan bertanya ulang.</h2>
+        <p>FAQ membantu mengurangi kebingungan dan membuat admin lebih hemat waktu.</p>
+      </div>
 
-<div class="card">
-<h3>Dukungan Cepat</h3>
-<p>Admin siap membantu pelanggan kapan saja melalui WhatsApp.</p>
-</div>
+      <div class="faq">
+        <details open>
+          <summary>Bagaimana cara mulai order?</summary>
+          <p>Klik tombol WhatsApp, lalu jelaskan kebutuhan kamu. Admin akan membantu proses selanjutnya dengan cepat.</p>
+        </details>
+        <details>
+          <summary>Kalau saya masih bingung, apa yang harus dilakukan?</summary>
+          <p>Kamu bisa lihat tutorial dulu di YouTube, lalu lanjut chat admin jika masih ada pertanyaan.</p>
+        </details>
+        <details>
+          <summary>Apakah website ini bisa diupdate nanti?</summary>
+          <p>Bisa. Tinggal edit file <strong>index.html</strong> di GitHub, lalu commit. Website akan otomatis update beberapa saat setelahnya.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h2>Siap arahkan pengunjung bio IG jadi calon pelanggan?</h2>
+          <p>Gunakan tombol utama untuk chat admin, tombol kedua untuk tutorial, dan biarkan landing page ini membantu pengunjung melangkah dengan lebih yakin.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://wa.me/6289687023528" target="_blank" rel="noopener">Hubungi Admin Sekarang</a>
+          <a class="btn btn-outline" href="https://youtube.com/@faishalfajarfauzani5107?si=IzDjAp8mbOSRbdEr" target="_blank" rel="noopener">Buka Halaman Tutorial</a>
+          <a class="btn btn-outline" href="#layanan">Lihat Layanan</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <footer>
+    <div class="container footer-wrap">
+      <div>© 2026 FaiApps Official. Semua hak dilindungi.</div>
+      <div>Dibuat untuk tampil elegan, jelas, dan memudahkan pelanggan mengambil tindakan.</div>
+    </div>
+  </footer>
 
-<section class="container">
-
-<div class="section-title">
-<h2>Cara Memulai</h2>
-<p>Langkah sederhana agar pelanggan langsung tahu apa yang harus dilakukan.</p>
-</div>
-
-<div class="steps">
-
-<div class="step">
-<div class="step-number">1</div>
-<h3>Pilih Layanan</h3>
-<p>Lihat layanan yang tersedia dan pilih sesuai kebutuhan.</p>
-</div>
-
-<div class="step">
-<div class="step-number">2</div>
-<h3>Hubungi Admin</h3>
-<p>Klik tombol WhatsApp untuk konsultasi atau pemesanan.</p>
-</div>
-
-<div class="step">
-<div class="step-number">3</div>
-<h3>Ikuti Tutorial</h3>
-<p>Tonton video panduan untuk memahami layanan lebih lanjut.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="cta">
-
-<h2>Siap Memulai?</h2>
-
-<p>Hubungi admin sekarang atau lihat tutorial untuk memahami layanan lebih lanjut.</p>
-
-<div class="buttons">
-<a class="btn btn-primary" href="https://wa.me/6289687023528" target="_blank">Hubungi Admin</a>
-<a class="btn btn-outline" href="https://youtube.com/@faishalfajarfauzani5107?si=IzDjAp8mbOSRbdEr" target="_blank">Buka Tutorial</a>
-</div>
-
-</section>
-
-<footer>
-© 2026 FaiApps • Landing Page
-</footer>
-
+  <a class="floating-wa" href="https://wa.me/6289687023528" target="_blank" rel="noopener">WhatsApp Admin</a>
 </body>
 </html>
